@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "location": "Nigeria",
+    "age": 24
+  },
+  {
+    "id": 2,
+    "name": "Sam Dove",
+    "email": "samdove@example.com",
+    "location": "England",
+    "age": 27
+  },
+  {
+    "id": 1,
+    "name": "John Gyan",
+    "email": "johngyan@example.com",
+    "location": "Ghana",
+    "age": 28
+  }
+]
