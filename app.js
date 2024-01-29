@@ -1,4 +1,4 @@
-const epress = require("express");
+const express = require("express");
 const userRoutes = require("./controllers/userRoutes");
 const port = 8000;
 const cors = require("cors");
@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 // );
 
 app.use(cors());
-app.use("/users", userRoutes);
+app.use("/usersApi", userRoutes);
 
 app.get("/", (req, res) => {
   res.send({ message: "the API is working" });
