@@ -9,6 +9,9 @@ function readDataFromFile() {
   const data = fs.readFileSync(dataFilePath);
   return JSON.parse(data);
 }
+function writeDatatoFile(data) {
+  fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2));
+}
 router.get("/users", (req, res) => {
   const users = readDataFromFile();
   res.send(users);
@@ -22,6 +25,15 @@ router.get("/users/:id", (req, res) => {
   } else {
     res.status(400).send("user not found");
   }
+});
+router.post("/users", (req, res) => {
+  const user = req.body;
+  // console.log("user", user);
+  const users = readDataFromFile();
+  user.id = new Date().getTime();
+  users.push(user);
+  res.send(users);
+  writeDatatoFile(users);
 });
 router.get("/test", (req, res) => {
   res.send({ message: "welcome to user test api", path: dataFilePath });

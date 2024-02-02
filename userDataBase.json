@@ -19,5 +19,12 @@
     "email": "johngyan@example.com",
     "location": "Ghana",
     "age": 28
+  },
+  {
+    "id": 1706878128943,
+    "name": "pell Gyan",
+    "email": "pellgyan@example.com",
+    "location": "canada",
+    "age": 28
   }
 ]
