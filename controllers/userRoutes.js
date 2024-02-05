@@ -1,3 +1,4 @@
+const { error, log } = require("console");
 const express = require("express");
 const router = express.Router();
 const fs = require("fs");
@@ -34,6 +35,36 @@ router.post("/users", (req, res) => {
   users.push(user);
   res.send(users);
   writeDatatoFile(users);
+});
+router.put("/users/:id", (req, res) => {
+  const users = readDataFromFile();
+  const userId = req.params.id;
+  const updateUser = req.body;
+
+  const userIndex = users.findIndex((user) => user.id === parseInt(userId));
+  console.log("userIndex", userIndex);
+  if (userIndex == -1) {
+    return res.status(400).send({ error: "404 user not found" });
+  }
+  users[userIndex] = {
+    ...users[userIndex],
+    ...updateUser,
+  };
+  writeDatatoFile(users);
+  res.send(users[userIndex]);
+});
+router.delete("/users/:id", (req, res) => {
+  const users = readDataFromFile();
+  const userId = req.params.id;
+
+  const userIndex = users.findIndex((user) => user.id === parseInt(userId));
+  console.log("userIndex", userIndex);
+  if (userIndex == -1) {
+    return res.status(400).send({ error: "404 user not found" });
+  }
+  users.splice(userIndex, 1);
+  writeDatatoFile(users);
+  res.send({ message: `user with id ${userId} was sucessfully deleted` });
 });
 router.get("/test", (req, res) => {
   res.send({ message: "welcome to user test api", path: dataFilePath });
